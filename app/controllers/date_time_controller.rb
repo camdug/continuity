@@ -1,6 +1,6 @@
 class DateTimeController < ApplicationController
   def get 
-  Time.now
+    @time = Time.now
   end
 
 end
