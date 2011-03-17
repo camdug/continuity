@@ -1,4 +1,6 @@
 Server::Application.routes.draw do
+  get 'ping(/:time_zone)' => 'DateTime#get', :defaults => { :format => 'json' }
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
