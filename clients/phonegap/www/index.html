@@ -14,8 +14,7 @@
 	-->
 	<!-- If you application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 	<script type="text/javascript" charset="utf-8" src="phonegap.0.9.4.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="jquery.jsonp-2.1.4.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="assets/js/jquery-1.5.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
 
 
@@ -45,37 +44,18 @@
     
 $(document).ready(function(){
     //alert($.ajax);
-    $.ajax({
-		url: 'http://camdugcontinuity.heroku.com/ping.json',
-		success: function(data) {
-		    alert("Success '" + data + "'");
-			//$('#your-tweets').append('<li>The feed loads fine');
-			//$.each(data, function(i,item){
-			//	var tweet = item.text;
-			//	$('#your-tweets').append('<li>'+tweet);
-			//});
-		},
-		error: function(){
-		    alert("Error " );
-			$('#your-tweets').append('<li>There was an error loading the feed');
-		}
-	   });
-	$.jsonp({
-		url: 'http://camdugcontinuity.heroku.com/ping.json',
-		callbackParameter: 'callback',
-		success: function(data, status) {
-		    alert("Success " + data + ", " + status);
+     $.getJSON(
+		'http://camdugcontinuity.heroku.com/ping.json', 
+		  function(data){
+		    //alert('Data is: ' + data + '; data.dateTime is: ' + data.dateTime);
+		    alert('date time is: ' + Date.parse(data.dateTime)); 
 			//$('#your-tweets').append('<li>The feed loads fine');
 			$.each(data, function(i,item){
 				var tweet = item.text;
 				$('#your-tweets').append('<li>'+tweet);
 			});
-		},
-		error: function(options, status){
-		    alert("Error '" + status + "' options = '" + options + "'" );
-			$('#your-tweets').append('<li>There was an error loading the feed');
-		}
-	});
+		} 
+	 );
 });
 
     </script>
